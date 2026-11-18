@@ -1,0 +1,8 @@
+version: 2.1.28
+files:
+  - url: TwistXLauncherSetup-latest.exe
+    sha512: xA63Jh9CLvEjHZL/tRbGgAe0xZVAMgEghCl/cV3bMrtLYgs/81Pohl7OyeVBDqUFZRdlQU9PZ+/WEzm7T1VtvA==
+    size: 120857646
+path: TwistXLauncherSetup-latest.exe
+sha512: xA63Jh9CLvEjHZL/tRbGgAe0xZVAMgEghCl/cV3bMrtLYgs/81Pohl7OyeVBDqUFZRdlQU9PZ+/WEzm7T1VtvA==
+releaseDate: '2026-09-20T09:08:24.205Z'

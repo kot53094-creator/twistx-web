@@ -1,0 +1,428 @@
+/*
+ * TwistX — фирменный слой поверх style.css.
+ *
+ * Здесь только новое: тёмно-фиолетовая палитра, шапка-навигация и страница
+ * «Друзья». Остальные страницы продолжают работать на старых стилях, но
+ * наследуют палитру и типографику.
+ */
+
+:root {
+    --tx-bg: #0a0712;
+    --tx-bg-2: #0d0a18;
+    --tx-card: #141020;
+    --tx-line: rgba(255, 255, 255, 0.07);
+    --tx-text: #ffffff;
+    --tx-muted: #9c95b3;
+    --tx-muted-2: #736c8a;
+    --tx-accent: #8b5cf6;
+    --tx-accent-2: #a855f7;
+    --tx-accent-3: #6d28d9;
+    --tx-green: #3ddc84;
+    --tx-radius: 16px;
+}
+
+html {
+    background: var(--tx-bg);
+}
+
+body.tx-page,
+body {
+    color-scheme: dark;
+}
+
+.tx-page {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(90% 60% at 20% -10%, rgba(109, 40, 217, 0.28), transparent 60%),
+        radial-gradient(70% 50% at 90% 0%, rgba(76, 29, 149, 0.24), transparent 60%),
+        linear-gradient(180deg, #0b0816 0%, #0a0712 40%, #08060f 100%);
+    color: var(--tx-text);
+    font-family: Manrope, "Segoe UI", system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Иконки-лигатуры не подгружаем: чтобы не было «сырых» названий,
+   декоративные иконки в карточках скрыты, текст остаётся чистым. */
+.tx-page .material-symbols-outlined {
+    display: none !important;
+}
+
+/* ---------- Шапка ---------- */
+
+.tx-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    height: 72px;
+    padding: 0 clamp(16px, 4vw, 48px);
+    background: rgba(10, 7, 18, 0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--tx-line);
+}
+
+.tx-nav-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    text-decoration: none;
+}
+
+.tx-nav-logo svg {
+    filter: drop-shadow(0 6px 16px rgba(139, 92, 246, 0.5));
+}
+
+.tx-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 12px;
+}
+
+.tx-nav-links a {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 13px;
+    border-radius: 10px;
+    color: #a9a2be;
+    font-size: 13.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.16s ease, color 0.16s ease;
+}
+
+.tx-nav-links a:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+.tx-nav-links a.active {
+    background: linear-gradient(95deg, #7b3ff2, #9a55f7);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.34);
+}
+
+.tx-nav-user {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--tx-muted);
+}
+
+.tx-nav-user a {
+    color: #cbb9ff;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* ---------- Страница ---------- */
+
+.tx-friends-page {
+    width: min(1180px, 100% - 32px);
+    margin: 0 auto;
+    padding: 34px 0 64px;
+}
+
+.tx-page-head h1 {
+    margin: 0;
+    font-size: clamp(26px, 3vw, 34px);
+    font-weight: 800;
+    letter-spacing: -0.6px;
+}
+
+.tx-page-head p {
+    margin: 8px 0 24px;
+    max-width: 640px;
+    color: var(--tx-muted);
+    font-size: 14.5px;
+    line-height: 1.5;
+}
+
+.tx-friends-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-areas:
+        "search requests"
+        "friends friends";
+    gap: 16px;
+}
+
+.tx-card-search { grid-area: search; }
+.tx-friends-grid > .tx-card:nth-child(2) { grid-area: requests; }
+.tx-card-wide { grid-area: friends; }
+
+.tx-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px 18px 16px;
+    border-radius: var(--tx-radius);
+    background: linear-gradient(180deg, rgba(24, 18, 38, 0.94), rgba(16, 12, 27, 0.94));
+    border: 1px solid var(--tx-line);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.tx-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #f2eefb;
+}
+
+.tx-card-title::before {
+    content: "";
+    width: 3px;
+    height: 16px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #a855f7, #7b3ff2);
+}
+
+.tx-count {
+    margin-left: auto;
+    min-width: 24px;
+    height: 20px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(139, 92, 246, 0.2);
+    color: #cbb9ff;
+    font-size: 11.5px;
+    font-weight: 800;
+}
+
+/* Поиск */
+.tx-search-row {
+    display: flex;
+    gap: 10px;
+}
+
+.tx-search-row input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13.5px;
+    outline: none;
+}
+
+.tx-search-row input::placeholder {
+    color: #6f6885;
+}
+
+.tx-search-row input:focus {
+    border-color: rgba(139, 92, 246, 0.55);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.14);
+}
+
+.tx-btn {
+    height: 44px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 12px;
+    background: linear-gradient(100deg, #8b3ffb, #a855f7);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 24px rgba(124, 58, 237, 0.3);
+}
+
+.tx-btn:hover {
+    filter: brightness(1.08);
+}
+
+.tx-btn.ghost {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    color: #e6e1f2;
+}
+
+/* Списки игроков */
+.tx-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tx-list:empty::after {
+    content: "Пока пусто";
+    padding: 14px 4px;
+    color: var(--tx-muted-2);
+    font-size: 12.5px;
+}
+
+.tx-list-muted:not(:empty) {
+    padding-top: 12px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.07);
+}
+
+.tx-player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tx-player:hover {
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.tx-avatar {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+    border-radius: 9px;
+    background: #221a34 center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    color: #cbb9ff;
+    text-transform: uppercase;
+}
+
+.tx-player-info {
+    min-width: 0;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.tx-player-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #f4f0fb;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tx-player-sub {
+    font-size: 11.5px;
+    color: var(--tx-muted-2);
+}
+
+.tx-player-actions {
+    display: flex;
+    gap: 6px;
+    flex: 0 0 auto;
+}
+
+.tx-mini {
+    height: 32px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #cfc8de;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.tx-mini:hover {
+    background: rgba(139, 92, 246, 0.2);
+    color: #fff;
+}
+
+.tx-mini.accent {
+    background: linear-gradient(100deg, #8b3ffb, #a855f7);
+    color: #fff;
+}
+
+.tx-mini.danger:hover {
+    background: rgba(240, 68, 56, 0.18);
+    color: #ff9a94;
+}
+
+.tx-badge-status {
+    flex: 0 0 auto;
+    height: 22px;
+    padding: 0 9px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--tx-muted);
+}
+
+.tx-badge-status.pending {
+    background: rgba(245, 181, 68, 0.14);
+    color: #f5b544;
+}
+
+.tx-badge-status.friend {
+    background: rgba(61, 220, 132, 0.14);
+    color: var(--tx-green);
+}
+
+.tx-empty,
+.tx-error {
+    padding: 18px 12px;
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--tx-muted-2);
+}
+
+.tx-error {
+    border-style: solid;
+    border-color: rgba(240, 68, 56, 0.35);
+    background: rgba(240, 68, 56, 0.08);
+    color: #ffb4ae;
+}
+
+/* Скроллбар и выделение */
+.tx-page ::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tx-page ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+}
+
+.tx-page ::selection {
+    background: rgba(168, 85, 247, 0.35);
+}
+
+@media (max-width: 900px) {
+    .tx-friends-grid {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "search" "requests" "friends";
+    }
+
+    .tx-nav-links {
+        display: none;
+    }
+}

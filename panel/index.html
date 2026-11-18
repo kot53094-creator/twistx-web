@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>TwistX Panel</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🐸</text></svg>">
+    <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+    <!-- ================= LOGIN ================= -->
+    <div id="loginScreen" class="login-screen" hidden>
+        <form id="loginForm" class="login-card" autocomplete="on">
+            <h1 class="login-title">TWISTX<span>PANEL</span></h1>
+            <p class="login-subtitle">Панель администратора</p>
+
+            <label class="field">
+                <span>Логин</span>
+                <input type="text" id="loginUsername" name="username" autocomplete="username" required>
+            </label>
+
+            <label class="field">
+                <span>Пароль</span>
+                <input type="password" id="loginPassword" name="password" autocomplete="current-password" required>
+            </label>
+
+            <div id="loginError" class="login-error" hidden></div>
+            <!-- Состояние связи с API: сюда попадают проблемы с адресом и сетью. -->
+            <div id="apiNotice" class="login-notice" hidden></div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="loginSubmit">Войти</button>
+
+            <p class="login-hint" id="loginApiHint"></p>
+        </form>
+    </div>
+
+    <!-- ================= APP ================= -->
+    <div id="appScreen" class="app" hidden>
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-frog">🐸</span>
+                <span class="brand-text">TWISTX<small>PANEL</small></span>
+            </div>
+
+            <nav class="nav" id="nav">
+                <a href="#/dashboard" class="nav-item" data-view="dashboard"><i class="ico">▦</i>Dashboard</a>
+                <a href="#/users" class="nav-item" data-view="users"><i class="ico">☺</i>Пользователи</a>
+                <a href="#/servers" class="nav-item" data-view="servers"><i class="ico">▤</i>Servers</a>
+                <a href="#/builds" class="nav-item" data-view="builds"><i class="ico">◈</i>Builds</a>
+                <a href="#/files" class="nav-item" data-view="files"><i class="ico">▥</i>Files</a>
+                <a href="#/mods" class="nav-item" data-view="mods"><i class="ico">✦</i>Mods</a>
+                <a href="#/news" class="nav-item" data-view="news"><i class="ico">✉</i>News</a>
+                <a href="#/settings" class="nav-item" data-view="settings"><i class="ico">⚙</i>Settings</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="whoami" id="whoami"></div>
+                <button class="btn btn-ghost btn-block" id="logoutBtn">Выйти</button>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <h2 id="pageTitle">Dashboard</h2>
+                <div class="topbar-actions" id="topbarActions"></div>
+            </header>
+            <section class="content" id="content"></section>
+        </main>
+    </div>
+
+    <div id="toasts" class="toasts"></div>
+    <div id="modalRoot"></div>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/state.js"></script>
+    <script src="js/picker.js"></script>
+    <script src="js/views/dashboard.js"></script>
+    <script src="js/views/users.js"></script>
+    <script src="js/views/servers.js"></script>
+    <script src="js/views/builds.js"></script>
+    <script src="js/views/files.js"></script>
+    <script src="js/views/mods.js"></script>
+    <script src="js/views/news.js"></script>
+    <script src="js/views/settings.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

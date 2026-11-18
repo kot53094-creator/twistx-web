@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница не найдена — TwistX</title>
+    <meta name="description" content="Страница не найдена. Вернитесь на главную TwistX или скачайте лаунчер.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#07051a">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Press+Start+2P&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body data-twistx-page="notfound" class="page-sub">
+    <a class="skip-link" href="#appContent">Перейти к содержимому</a>
+    <nav class="navbar navbar-stream">
+        <div class="nav-container nav-stream-grid">
+            <a href="./index.html" class="nav-brand">
+                <div class="brand-mark">
+                    <img src="./favicon.svg" alt="TwistX" class="brand-icon">
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">TwistX</span>
+                    <span class="brand-subtitle">launcher / server hub</span>
+                </div>
+            </a>
+            <ul class="nav-links-center">
+                <li><a href="./index.html#servers">Наши сервера</a></li>
+                <li><a href="./download.html" class="nav-link-shop">Скачать</a></li>
+                <li><a href="./skins.html">Скины</a></li>
+                <li><a href="./rules.html">Правила</a></li>
+            </ul>
+            <div class="nav-auth-stream">
+                <div class="nav-avatar-wrap" aria-hidden="true">
+                    <img class="nav-avatar-img" id="navAvatarImg" src="https://minotar.net/helm/Steve/36.png" width="36" height="36" alt="">
+                </div>
+                <div class="nav-auth" id="navAuth"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="appContent" style="margin-top:60px;">
+        <div class="sub-hero">
+            <div class="sub-hero-inner">
+                <h1>404 — <span class="highlight">страница не найдена</span></h1>
+                <p>Такой страницы нет или она переехала. Вернитесь на главную либо скачайте лаунчер.</p>
+            </div>
+        </div>
+
+        <section class="container" style="padding-top:32px;padding-bottom:64px;">
+            <div class="download-card mc-card" style="max-width:640px;margin:0 auto;text-align:center;">
+                <div class="download-head" style="justify-content:center;">
+                    <span class="download-title">Куда дальше</span>
+                </div>
+                <div class="download-actions" style="justify-content:center;">
+                    <a class="btn-mc primary" href="./index.html">
+                        <span class="material-icons-outlined">home</span>
+                        На главную
+                    </a>
+                    <a class="btn-mc ghost" href="./download.html">
+                        <span class="material-icons-outlined">download</span>
+                        Скачать лаунчер
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>TwistX</h3>
+                <p>Launcher &amp; Server Hub.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="./index.html">Главная</a></li>
+                    <li><a href="./download.html">Скачать</a></li>
+                    <li><a href="./skins.html">Скины</a></li>
+                    <li><a href="./rules.html">Правила</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Контакты</h4>
+                <p>Email: support@twistx.net</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TwistX</p>
+        </div>
+    </footer>
+
+    <div id="toastPool" class="toast-pool"></div>
+    <script src="./js/boot.js"></script>
+    <script src="./js/auth-ui.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script src="./js/admin-button.js" defer></script>
+</body>
+</html>

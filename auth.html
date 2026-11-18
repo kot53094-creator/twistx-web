@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход и регистрация — TwistX ID</title>
+    <meta name="description" content="Единый аккаунт TwistX ID для сайта, лаунчера и игрового сервера: регистрация, вход и управление профилем.">
+    <meta name="theme-color" content="#08060f">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/brand.css">
+    <link rel="stylesheet" href="./css/auth.css">
+</head>
+<body data-twistx-page="auth" class="tx-auth">
+<a class="skip-link" href="#appContent">Перейти к содержимому</a>
+
+<header class="tx-auth-nav">
+    <a href="./index.html" class="tx-brand">
+        <svg viewBox="0 0 48 48" width="34" height="34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <linearGradient id="txAuthGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#D8B4FE"/>
+                    <stop offset="1" stop-color="#6D28D9"/>
+                </linearGradient>
+            </defs>
+            <path d="M6 4h13.4l5 9.2 5-9.2H42L31.6 24 42 44H29.5l-5.1-9.6L19.2 44H6l10.6-20L6 4z" fill="url(#txAuthGrad)"/>
+        </svg>
+        <span>
+            <span class="tx-brand-name">TwistX</span>
+            <span class="tx-brand-sub">TwistX ID</span>
+        </span>
+    </a>
+
+    <div class="tx-auth-nav-right">
+        <div class="nav-auth" id="navAuth"></div>
+        <a class="ghost" href="./index.html">На главную</a>
+    </div>
+</header>
+
+<main id="appContent">
+    <div class="tx-auth-wrap">
+
+        <!-- Левая часть: что даёт аккаунт -->
+        <section class="tx-auth-brand">
+            <span class="tx-auth-chip">
+                <span class="material-icons-outlined">verified_user</span>
+                TwistX ID
+            </span>
+
+            <h1>Один аккаунт<br><span>для сайта и лаунчера</span></h1>
+
+            <p>
+                Регистрация здесь создаёт игровой аккаунт: тем же ником и паролем
+                вы входите в TwistX Launcher и на сервер.
+            </p>
+
+            <ul class="tx-auth-points">
+                <li>
+                    <span class="material-icons-outlined">login</span>
+                    <span><b>Единый вход</b> — сайт, лаунчер и игровой сервер используют одну учётную запись.</span>
+                </li>
+                <li>
+                    <span class="material-icons-outlined">badge</span>
+                    <span><b>Ник = игровой ник.</b> UUID выдаётся сразу и не меняется при смене ника — прогресс на сервере сохраняется.</span>
+                </li>
+                <li>
+                    <span class="material-icons-outlined">lock</span>
+                    <span><b>Безопасно:</b> пароль хранится только как bcrypt-хэш, сессия — в защищённой cookie.</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Правая часть: карточка входа -->
+        <div class="tx-auth-card">
+            <div class="tx-auth-tabs" role="tablist" aria-label="Вход или регистрация">
+                <button type="button" class="auth-tab is-active" data-tab="login" role="tab" aria-selected="true">Вход</button>
+                <button type="button" class="auth-tab" data-tab="register" role="tab" aria-selected="false">Регистрация</button>
+            </div>
+
+            <div class="auth-alert" id="authNotice" hidden role="alert"></div>
+
+            <form id="loginForm" class="auth-form" novalidate>
+                <label class="field">
+                    <span class="field-label">Ник</span>
+                    <input type="text" id="loginUser" name="username" autocomplete="username" placeholder="Steve" maxlength="16" required>
+                </label>
+
+                <label class="field">
+                    <span class="field-label">Пароль</span>
+                    <span class="field-password">
+                        <input type="password" id="loginPassword" name="password" autocomplete="current-password" placeholder="••••••••" required>
+                        <button type="button" class="field-eye" data-password-toggle="loginPassword" aria-label="Показать пароль" title="Показать пароль">
+                            <span class="material-icons-outlined">visibility</span>
+                        </button>
+                    </span>
+                </label>
+
+                <label class="field" id="loginCodeField" style="display:none">
+                    <span class="field-label">Код из приложения <em>двухфакторка</em></span>
+                    <input type="text" id="loginCode" name="code" inputmode="numeric" autocomplete="one-time-code" placeholder="123456" maxlength="11">
+                    <span class="field-hint">6 цифр из Google Authenticator или резервный код</span>
+                </label>
+
+                <div class="auth-alert" id="loginError" hidden role="alert"></div>
+
+                <button type="submit" class="auth-submit" id="loginSubmit">
+                    <span class="spinner" hidden aria-hidden="true"></span>
+                    <span class="btn-label">Войти</span>
+                </button>
+
+                <p class="auth-foot">Нет аккаунта? <a href="#register" data-auth-tab="register">Зарегистрироваться</a></p>
+            </form>
+
+            <form id="registerForm" class="auth-form" novalidate hidden>
+                <label class="field">
+                    <span class="field-label">Ник <em>он же игровой</em></span>
+                    <input type="text" id="regUser" name="username" autocomplete="username" placeholder="Steve" maxlength="16" required>
+                    <span class="field-hint" id="regUserHint">3–16 символов: латиница, цифры и _</span>
+                </label>
+
+                <label class="field">
+                    <span class="field-label">Email <em>необязательно</em></span>
+                    <input type="email" id="regEmail" name="email" autocomplete="email" placeholder="you@example.com">
+                </label>
+
+                <label class="field">
+                    <span class="field-label">Пароль</span>
+                    <span class="field-password">
+                        <input type="password" id="regPassword" name="password" autocomplete="new-password" placeholder="••••••••" required>
+                        <button type="button" class="field-eye" data-password-toggle="regPassword" aria-label="Показать пароль" title="Показать пароль">
+                            <span class="material-icons-outlined">visibility</span>
+                        </button>
+                    </span>
+                    <span class="strength" id="regStrength" data-score="0" hidden aria-hidden="true">
+                        <i></i><i></i><i></i><i></i>
+                        <span class="strength-label"></span>
+                    </span>
+                    <span class="field-hint" id="regPasswordHint">Минимум 8 символов, буквы и цифры</span>
+                </label>
+
+                <label class="field">
+                    <span class="field-label">Повтор пароля</span>
+                    <input type="password" id="regPasswordRepeat" name="passwordRepeat" autocomplete="new-password" placeholder="••••••••" required>
+                    <span class="field-hint" id="regPasswordRepeatHint"></span>
+                </label>
+
+                <div class="auth-alert" id="registerError" hidden role="alert"></div>
+
+                <button type="submit" class="auth-submit" id="registerSubmit">
+                    <span class="spinner" hidden aria-hidden="true"></span>
+                    <span class="btn-label">Создать аккаунт</span>
+                </button>
+
+                <p class="auth-foot">Уже есть аккаунт? <a href="#" data-auth-tab="login">Войти</a></p>
+            </form>
+
+            <p class="auth-note">
+                <span class="material-icons-outlined">info</span>
+                Это один аккаунт для сайта и игры. В лаунчере выберите «TwistX ID» и введите этот же ник и пароль.
+                Скин ставится в <a href="./profile.html">кабинете</a> — отдельно регистрироваться нигде не нужно.
+            </p>
+
+            <p class="auth-note">
+                <span class="material-icons-outlined">help_outline</span>
+                Забыли пароль? Автоматического сброса пока нет — попросите администратора сменить пароль в панели.
+            </p>
+        </div>
+    </div>
+</main>
+
+<div id="toastPool" class="toast-pool"></div>
+
+<script src="./js/boot.js"></script>
+<script src="./js/auth-ui.js"></script>
+<script type="module" src="./js/main.js"></script>
+<script src="./js/admin-button.js" defer></script>
+</body>
+</html>

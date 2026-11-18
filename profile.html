@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07051a">
+    <title>Кабинет — TwistX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Press+Start+2P&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <!-- skinview3d 2.2.1: локальная копия, чтобы превью не зависело от внешнего CDN -->
+    <script src="./js/vendor/skinview3d.bundle.js"></script>
+    <script>
+        // Подстраховка: если локальный файл не отдался, берём библиотеку с CDN.
+        if (typeof skinview3d === "undefined") {
+            document.write('<script src="https://unpkg.com/skinview3d@2.2.1/bundles/skinview3d.bundle.js"><\/script>');
+        }
+    </script>
+</head>
+<body data-twistx-page="profile" class="page-sub">
+    <a class="skip-link" href="#appContent">Перейти к содержимому</a>
+    <nav class="navbar navbar-stream">
+        <div class="nav-container nav-stream-grid">
+            <a href="./index.html" class="nav-brand">
+                <div class="brand-mark">
+                    <img src="https://minotar.net/helm/Steve/32.png" alt="TwistX" class="brand-icon">
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">TwistX</span>
+                    <span class="brand-subtitle">launcher / server hub</span>
+                </div>
+            </a>
+            <ul class="nav-links-center">
+                <li><a href="#">Форум</a></li>
+                <li><a href="./index.html#servers">Наши сервера</a></li>
+                <li><a href="./download.html" class="nav-link-shop">Магазин</a></li>
+                <li><a href="./rules.html">Помощь</a></li>
+                <li><a href="#" class="nav-link-donate">Донат <span class="donate-ico" aria-hidden="true">✦</span></a></li>
+            </ul>
+            <div class="nav-auth-stream">
+                <div class="nav-avatar-wrap" aria-hidden="true">
+                    <img class="nav-avatar-img" id="navAvatarImg" src="https://minotar.net/helm/Steve/36.png" width="36" height="36" alt="">
+                </div>
+                <div class="nav-auth" id="navAuth"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Отступ сверху задаётся в CSS: инлайновый margin-top раньше «уводил» страницу под шапку. -->
+    <main id="appContent">
+        <section class="pf-page container">
+            <header class="pf-head">
+                <div class="pf-head-text">
+                    <p class="pf-eyebrow">Личный кабинет</p>
+                    <h1 class="pf-title">Профиль <span class="highlight">игрока</span></h1>
+                    <p class="pf-sub">Скин, ник и настройки аккаунта TwistX ID. Этот же аккаунт используется в лаунчере и в игре.</p>
+                </div>
+                <button type="button" class="btn-outline" onclick="app.logoutTwistx()">Выйти</button>
+            </header>
+
+            <!-- Карточка игрока: сюда скрипт подставляет ник, почту и UUID. -->
+            <section class="pf-identity" aria-label="Данные игрока">
+                <div class="pf-avatar">
+                    <img id="profileHead" src="https://minotar.net/helm/Steve/128.png" width="104" height="104" alt="Голова игрока">
+                </div>
+                <div class="pf-identity-body">
+                    <p class="pf-identity-label">Игровой аккаунт</p>
+                    <p class="pf-identity-name" id="profileUsername">—</p>
+                    <div class="pf-identity-meta">
+                        <span class="badge">TwistX ID</span>
+                        <span class="pf-mono" id="profileUuid" title="UUID игрока">—</span>
+                        <button type="button" class="pf-copy" id="copyUuid" aria-label="Скопировать UUID" title="Скопировать UUID">
+                            <span class="material-icons-outlined" aria-hidden="true">content_copy</span>
+                        </button>
+                    </div>
+                    <p class="pf-identity-mail">Почта: <span id="profileEmail">—</span></p>
+                </div>
+            </section>
+
+            <div class="pf-grid">
+                <!-- Левая колонка: персонаж и загрузка скина -->
+                <div class="pf-col">
+                    <section class="pf-card pf-card-skin" aria-label="Персонаж">
+                        <h2 class="pf-card-title">Твой персонаж</h2>
+                        <div id="skinContainer" class="skin-preview-stage">
+                            <!-- Пока модель не построена, показываем подсказку вместо пустого прямоугольника. -->
+                            <p class="pf-stage-empty">Модель загружается…</p>
+                        </div>
+                        <div class="pf-card-actions">
+                            <button type="button" class="pf-ghost-btn" onclick="app.toggleSkinAnimation()">
+                                <span class="material-icons-outlined" aria-hidden="true">directions_walk</span>
+                                Анимация
+                            </button>
+                            <a class="pf-ghost-btn" href="./skins.html">
+                                <span class="material-icons-outlined" aria-hidden="true">style</span>
+                                Галерея скинов
+                            </a>
+                        </div>
+                        <p class="pf-hint">Скин применяется в игре сразу после перезапуска лаунчера.</p>
+                    </section>
+
+                    <section class="pf-card" aria-label="Загрузка скина">
+                        <h2 class="pf-card-title">Сменить скин</h2>
+                        <p class="pf-card-text">Файл PNG <b>64×64</b> (подходит и 64×32, 128×128), весом до 64 КБ.</p>
+                        <form id="skinUploadForm" onsubmit="app.uploadSkin(event)">
+                            <div class="file-upload">
+                                <label for="skinFile" class="file-upload-label">
+                                    <span class="material-icons-outlined" aria-hidden="true">cloud_upload</span>
+                                    <span>Выберите файл или перетащите сюда</span>
+                                </label>
+                                <input type="file" id="skinFile" accept=".png" required>
+                                <span id="fileName" class="file-name">Файл не выбран</span>
+                            </div>
+                            <button type="submit" class="btn-primary pf-full">Загрузить</button>
+                            <div id="uploadStatus" class="form-hint" aria-live="polite"></div>
+                        </form>
+                        <ol class="pf-steps">
+                            <li>Возьмите PNG-скин из <a href="./skins.html">галереи</a> или нарисуйте свой.</li>
+                            <li>Загрузите его — превью слева обновится сразу.</li>
+                            <li>Перезапустите лаунчер, чтобы модель подтянулась в игру.</li>
+                        </ol>
+                    </section>
+                </div>
+
+                <!-- Правая колонка: ник и пароль -->
+                <div class="pf-col">
+                    <section class="pf-card" aria-label="Смена ника">
+                        <h2 class="pf-card-title">Сменить ник</h2>
+                        <form class="settings-form" onsubmit="app.changeUsername(event)">
+                            <div class="form-group">
+                                <label for="nicknameInput">Новый ник</label>
+                                <input type="text" id="nicknameInput" minlength="3" maxlength="16" autocomplete="username" placeholder="Новый ник (3–16)">
+                            </div>
+                            <div class="form-group">
+                                <label for="nicknamePassword">Текущий пароль</label>
+                                <input type="password" id="nicknamePassword" autocomplete="current-password" placeholder="Пароль">
+                            </div>
+                            <button type="submit" class="btn-primary pf-full">Сохранить ник</button>
+                            <div class="form-hint" id="nicknameStatus" aria-live="polite"></div>
+                            <p class="pf-hint">Латиница, цифры и _. UUID игрока не меняется — прогресс на сервере сохраняется.</p>
+                        </form>
+                    </section>
+
+                    <section class="pf-card" aria-label="Смена пароля">
+                        <h2 class="pf-card-title">Сменить пароль</h2>
+                        <form class="settings-form" onsubmit="app.changePassword(event)">
+                            <div class="form-group">
+                                <label for="currentPassword">Текущий пароль</label>
+                                <input type="password" id="currentPassword" autocomplete="current-password" placeholder="Пароль">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Новый пароль</label>
+                                <input type="password" id="newPassword" autocomplete="new-password" placeholder="Минимум 8 символов">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPasswordRepeat">Повтор нового пароля</label>
+                                <input type="password" id="newPasswordRepeat" autocomplete="new-password" placeholder="Ещё раз">
+                            </div>
+                            <button type="submit" class="btn-primary pf-full">Сменить пароль</button>
+                            <div class="form-hint" id="passwordStatus" aria-live="polite"></div>
+                            <p class="pf-hint">Тот же пароль используется для входа в лаунчер.</p>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand"><h3>TwistX</h3></div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="./index.html">Главная</a></li>
+                    <li><a href="./skins.html">Скины</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 TwistX</p></div>
+    </footer>
+    <div id="toastPool" class="toast-pool"></div>
+    <script src="./js/boot.js"></script>
+    <script src="./js/auth-ui.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script src="./js/admin-button.js" defer></script>
+    <script src="./js/two-factor.js" defer></script>
+</body>
+</html>

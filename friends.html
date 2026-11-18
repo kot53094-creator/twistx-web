@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Друзья — TwistX</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml"/>
+    <link rel="stylesheet" href="./css/style.css"/>
+    <link rel="stylesheet" href="./css/brand.css"/>
+    <script src="./js/boot.js"></script>
+</head>
+<body class="tx-page">
+
+<header class="tx-nav">
+    <a class="tx-nav-logo" href="./index.html">
+        <svg viewBox="0 0 48 48" width="34" height="34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="txNavGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#C084FC"/>
+                    <stop offset="1" stop-color="#6D28D9"/>
+                </linearGradient>
+            </defs>
+            <path d="M6 4h13.4l5 9.2 5-9.2H42L31.6 24 42 44H29.5l-5.1-9.6L19.2 44H6l10.6-20L6 4z" fill="url(#txNavGrad)"/>
+        </svg>
+        <span>TwistX</span>
+    </a>
+    <nav class="tx-nav-links">
+        <a href="./index.html">Главная</a>
+        <a href="./download.html">Загрузка</a>
+        <a href="./skins.html">Скины</a>
+        <a class="active" href="./friends.html">Друзья</a>
+        <a href="./rules.html">Правила</a>
+    </nav>
+    <div class="tx-nav-user" id="txNavUser"></div>
+</header>
+
+<main class="tx-friends-page">
+    <div class="tx-page-head">
+        <h1>Друзья</h1>
+        <p>Находите игроков по нику TwistX, отправляйте заявки и собирайте команду для игры.</p>
+    </div>
+
+    <div class="tx-friends-grid">
+        <!-- Поиск -->
+        <section class="tx-card tx-card-search">
+            <div class="tx-card-title">
+                <span class="material-symbols-outlined">person_search</span>
+                <span>Найти игрока</span>
+            </div>
+            <div class="tx-search-row">
+                <input id="txFriendSearch" type="text" placeholder="Ник игрока, минимум 2 символа" autocomplete="off" spellcheck="false"/>
+                <button id="txFriendSearchBtn" class="tx-btn">Найти</button>
+            </div>
+            <div id="txSearchResults" class="tx-results"></div>
+        </section>
+
+        <!-- Заявки -->
+        <section class="tx-card">
+            <div class="tx-card-title">
+                <span class="material-symbols-outlined">mark_email_unread</span>
+                <span>Заявки</span>
+                <span class="tx-count" id="txRequestsCount">0</span>
+            </div>
+            <div id="txIncoming" class="tx-list"></div>
+            <div id="txOutgoing" class="tx-list tx-list-muted"></div>
+        </section>
+
+        <!-- Друзья -->
+        <section class="tx-card tx-card-wide">
+            <div class="tx-card-title">
+                <span class="material-symbols-outlined">groups</span>
+                <span>Мои друзья</span>
+                <span class="tx-count" id="txFriendsCount">0</span>
+            </div>
+            <div id="txFriendsList" class="tx-list"></div>
+        </section>
+    </div>
+</main>
+
+<script src="./js/friends.js"></script>
+</body>
+</html>

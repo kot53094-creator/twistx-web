@@ -1,0 +1,509 @@
+/*
+ * Страница входа и регистрации TwistX ID.
+ * Стили самодостаточны и подключаются после style.css / brand.css.
+ */
+
+.tx-auth {
+    min-height: 100vh;
+    margin: 0;
+    background:
+        radial-gradient(80% 60% at 15% 0%, rgba(109, 40, 217, 0.3), transparent 62%),
+        radial-gradient(70% 55% at 92% 8%, rgba(76, 29, 149, 0.26), transparent 60%),
+        #08060f;
+    color: #fff;
+    font-family: Manrope, "Segoe UI", system-ui, sans-serif;
+}
+
+.tx-auth * {
+    box-sizing: border-box;
+}
+
+.tx-auth .skip-link {
+    position: absolute;
+    left: -9999px;
+}
+
+/* ---------- шапка ---------- */
+
+.tx-auth-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 68px;
+    padding: 0 clamp(16px, 4vw, 44px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(8, 6, 15, 0.8);
+    backdrop-filter: blur(14px);
+}
+
+.tx-auth-nav .tx-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.tx-auth-nav .tx-brand svg {
+    filter: drop-shadow(0 6px 16px rgba(139, 92, 246, 0.5));
+}
+
+.tx-auth-nav .tx-brand-name {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+}
+
+.tx-auth-nav .tx-brand-sub {
+    display: block;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #736c8a;
+}
+
+.tx-auth-nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #9c95b3;
+}
+
+.tx-auth-nav-right a {
+    color: #cbb9ff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.tx-auth-nav-right a.ghost {
+    display: inline-flex;
+    align-items: center;
+    height: 34px;
+    padding: 0 13px;
+    border-radius: 9px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #efeaf8;
+    font-size: 12.5px;
+}
+
+.tx-auth-nav-right a.ghost:hover {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.45);
+}
+
+/* ---------- раскладка ---------- */
+
+.tx-auth-wrap {
+    width: min(1120px, 100% - 40px);
+    margin: 0 auto;
+    min-height: calc(100vh - 68px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: 48px;
+    padding: 40px 0;
+}
+
+/* ---------- левая часть ---------- */
+
+.tx-auth-brand {
+    min-width: 0;
+}
+
+.tx-auth-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(168, 85, 247, 0.32);
+    background: rgba(30, 20, 52, 0.6);
+    color: #d6c8f5;
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.tx-auth-chip .material-icons-outlined {
+    font-size: 15px;
+    color: #c084fc;
+}
+
+.tx-auth-brand h1 {
+    margin: 16px 0 0;
+    font-size: clamp(28px, 3.6vw, 42px);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.tx-auth-brand h1 span {
+    background: linear-gradient(100deg, #c084fc, #8b5cf6 55%, #6d28d9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.tx-auth-brand > p {
+    margin: 14px 0 0;
+    max-width: 460px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #a49cb9;
+}
+
+.tx-auth-points {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 26px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.tx-auth-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: #a9a2be;
+}
+
+.tx-auth-points .material-icons-outlined {
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background: rgba(139, 92, 246, 0.16);
+    color: #c084fc;
+    font-size: 17px;
+}
+
+.tx-auth-points b {
+    color: #f2eefb;
+    font-weight: 700;
+}
+
+/* ---------- карточка ---------- */
+
+.tx-auth-card {
+    position: relative;
+    width: 100%;
+    max-width: 430px;
+    justify-self: end;
+    padding: 24px 24px 20px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(26, 20, 42, 0.96), rgba(15, 11, 26, 0.97));
+    border: 1px solid rgba(139, 92, 246, 0.24);
+    box-shadow: 0 36px 80px rgba(0, 0, 0, 0.55);
+}
+
+.tx-auth-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    margin-bottom: 18px;
+}
+
+.tx-auth-tab {
+    height: 36px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: #a9a2be;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.16s ease, color 0.16s ease;
+}
+
+.tx-auth-tab:hover {
+    color: #fff;
+}
+
+.tx-auth-tab.is-active {
+    background: linear-gradient(95deg, #7b3ff2, #9a55f7);
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.35);
+}
+
+/* формы */
+.tx-auth .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tx-auth .auth-form[hidden],
+.tx-auth .field[hidden] {
+    display: none !important;
+}
+
+.tx-auth .field {
+    display: grid;
+    gap: 6px;
+}
+
+.tx-auth .field-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #8b839f;
+}
+
+.tx-auth .field-label em {
+    font-style: normal;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #6f6885;
+}
+
+.tx-auth .field input {
+    width: 100%;
+    height: 44px;
+    padding: 0 13px;
+    border-radius: 11px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+    font-family: inherit;
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+
+.tx-auth .field input::placeholder {
+    color: #6f6885;
+}
+
+.tx-auth .field input:focus {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.16);
+}
+
+.tx-auth .field-password {
+    position: relative;
+    display: block;
+}
+
+.tx-auth .field-eye {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #8b839f;
+    cursor: pointer;
+}
+
+.tx-auth .field-eye:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: #fff;
+}
+
+.tx-auth .field-eye .material-icons-outlined {
+    font-size: 18px;
+}
+
+.tx-auth .field-hint {
+    font-size: 11px;
+    line-height: 1.4;
+    color: #736c8a;
+}
+
+/* индикатор пароля */
+.tx-auth .strength {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.tx-auth .strength i {
+    flex: 1 1 0;
+    height: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.tx-auth .strength[data-score="1"] i:nth-child(-n+1) { background: #f04438; }
+.tx-auth .strength[data-score="2"] i:nth-child(-n+2) { background: #f5b544; }
+.tx-auth .strength[data-score="3"] i:nth-child(-n+3) { background: #7dd3a0; }
+.tx-auth .strength[data-score="4"] i:nth-child(-n+4) { background: #3ddc84; }
+
+.tx-auth .strength-label {
+    margin-left: 6px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #8b839f;
+    white-space: nowrap;
+}
+
+/* кнопка */
+.tx-auth .auth-submit {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 46px;
+    margin-top: 4px;
+    border: 0;
+    border-radius: 12px;
+    background: linear-gradient(100deg, #8b3ffb, #a855f7);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 12px 26px rgba(124, 58, 237, 0.36);
+}
+
+.tx-auth .auth-submit:hover {
+    filter: brightness(1.08);
+}
+
+.tx-auth .auth-submit:disabled {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.tx-auth .spinner {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #fff;
+    animation: txAuthSpin 0.8s linear infinite;
+}
+
+.tx-auth .spinner[hidden] {
+    display: none !important;
+}
+
+@keyframes txAuthSpin {
+    to { transform: rotate(360deg); }
+}
+
+/* уведомления */
+.tx-auth .auth-alert {
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.tx-auth .auth-alert[hidden] {
+    display: none !important;
+}
+
+.tx-auth .auth-alert.is-error {
+    background: rgba(240, 68, 56, 0.12);
+    border: 1px solid rgba(240, 68, 56, 0.35);
+    color: #ffb4ae;
+}
+
+.tx-auth .auth-alert.is-ok {
+    background: rgba(61, 220, 132, 0.12);
+    border: 1px solid rgba(61, 220, 132, 0.32);
+    color: #a7f3c9;
+}
+
+.tx-auth .auth-foot {
+    margin: 2px 0 0;
+    text-align: center;
+    font-size: 12.5px;
+    color: #8b839f;
+}
+
+.tx-auth .auth-foot a {
+    color: #cbb9ff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.tx-auth .auth-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin: 14px 0 0;
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: #6f6885;
+}
+
+.tx-auth .auth-note .material-icons-outlined {
+    font-size: 16px;
+    color: #8b839f;
+    flex: 0 0 auto;
+}
+
+.tx-auth .auth-note a {
+    color: #cbb9ff;
+}
+
+/* ---------- адаптив ---------- */
+
+@media (max-width: 980px) {
+    .tx-auth-wrap {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+        padding: 28px 0 48px;
+        align-items: start;
+    }
+
+    .tx-auth-card {
+        justify-self: stretch;
+        max-width: none;
+    }
+
+    .tx-auth-brand > p {
+        max-width: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .tx-auth-nav .tx-brand-sub {
+        display: none;
+    }
+
+    .tx-auth-card {
+        padding: 18px 16px 16px;
+        border-radius: 16px;
+    }
+
+    .tx-auth-points li {
+        font-size: 12px;
+    }
+}

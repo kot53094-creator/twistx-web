@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TwistX — лаунчер и сервер Minecraft</title>
+    <meta name="description" content="TwistX — лаунчер, сервер и кабинет игрока. Скины, 3D-превью, друзья и быстрый вход на сервер.">
+    <meta property="og:title" content="TwistX — лаунчер и сервер Minecraft">
+    <meta property="og:description" content="Скачай лаунчер, зайди на play.twistx.net, смотри 3D-скины и добавляй друзей.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#07050f">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css?v=4">
+    <link rel="stylesheet" href="./css/brand.css?v=4">
+    <link rel="stylesheet" href="./css/landing.css?v=4">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <!-- skinview3d 2.2.1: локальная копия, чтобы превью не зависело от внешнего CDN -->
+    <script src="./js/vendor/skinview3d.bundle.js"></script>
+    <script>
+        if (typeof skinview3d === "undefined") {
+            document.write('<script src="https://unpkg.com/skinview3d@2.2.1/bundles/skinview3d.bundle.js"><\/script>');
+        }
+    </script>
+</head>
+<body class="tx-landing" data-twistx-page="home">
+<a class="skip-link" href="#appContent">Перейти к содержимому</a>
+
+<nav class="tx-nav">
+    <a href="./index.html" class="tx-brand">
+        <svg viewBox="0 0 48 48" width="38" height="38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+                <linearGradient id="txBrandGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#D8B4FE"/>
+                    <stop offset="0.55" stop-color="#A855F7"/>
+                    <stop offset="1" stop-color="#6D28D9"/>
+                </linearGradient>
+            </defs>
+            <path d="M6 4h13.4l5 9.2 5-9.2H42L31.6 24 42 44H29.5l-5.1-9.6L19.2 44H6l10.6-20L6 4z" fill="url(#txBrandGrad)"/>
+            <path d="M24 19.6 27.4 26h-4.2l2.2 6.6L19.8 24h4.4l-.2-4.4z" fill="#F5EDFF" opacity="0.92"/>
+        </svg>
+        <span class="tx-brand-text">
+            <span class="tx-brand-name">TwistX</span>
+            <span class="tx-brand-sub">Minecraft Launcher</span>
+        </span>
+    </a>
+
+    <ul class="tx-nav-links">
+        <li><a class="active" href="./index.html">Главная</a></li>
+        <li><a href="#features">Функции</a></li>
+        <li><a href="./download.html">Загрузка</a></li>
+        <li><a href="./skins.html">Скины</a></li>
+        <li><a href="./friends.html">Друзья</a></li>
+        <li><a href="./rules.html">Помощь</a></li>
+    </ul>
+
+    <details class="tx-burger">
+        <summary aria-label="Меню">
+            <span class="tx-burger-line"></span>
+            <span class="tx-burger-line"></span>
+            <span class="tx-burger-line"></span>
+        </summary>
+        <div class="tx-burger-panel">
+            <a href="./index.html">Главная</a>
+            <a href="#features">Функции</a>
+            <a href="./download.html">Загрузка</a>
+            <a href="./skins.html">Скины</a>
+            <a href="./friends.html">Друзья</a>
+            <a href="./rules.html">Помощь</a>
+        </div>
+    </details>
+
+    <div class="tx-nav-right">
+        <div class="tx-nav-user">
+            <img class="tx-nav-avatar" id="navAvatarImg" src="https://minotar.net/helm/Steve/36.png" width="36" height="36" alt="">
+            <div class="tx-nav-auth" id="navAuth"></div>
+        </div>
+        <button type="button" class="tx-btn-primary tx-btn-sm" onclick="app.navigate('download')">
+            Скачать лаунчер
+            <span class="material-icons-outlined">download</span>
+        </button>
+    </div>
+</nav>
+
+<main id="appContent">
+
+    <!-- ============================ Hero ============================ -->
+    <section class="tx-hero">
+        <div class="tx-hero-bg" aria-hidden="true"></div>
+        <div class="tx-hero-aurora" aria-hidden="true"></div>
+        <div class="tx-hero-veil" aria-hidden="true"></div>
+
+        <div class="tx-wrap tx-hero-inner">
+            <div class="tx-hero-left">
+                <span class="tx-pill">
+                    <span class="tx-pill-star" aria-hidden="true">✦</span>
+                    Современный лаунчер для Minecraft
+                </span>
+
+                <h1 class="tx-hero-title">Twist<span>X</span></h1>
+                <p class="tx-hero-tagline">Играй. Общайся. Развивайся.</p>
+                <p class="tx-hero-desc">
+                    Полноценная площадка для игры в Minecraft: свои версии и сборки,
+                    друзья, косметика и быстрый вход на <strong>play.twistx.net</strong>.
+                </p>
+
+                <div class="tx-hero-actions">
+                    <button type="button" class="tx-btn-primary" onclick="app.navigate('download')">
+                        <span class="material-icons-outlined">download</span>
+                        Скачать лаунчер
+                        <span class="tx-btn-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <a class="tx-btn-ghost" href="#features">
+                        <span class="material-icons-outlined">play_circle</span>
+                        Узнать больше
+                    </a>
+                </div>
+
+                <div class="tx-social-proof">
+                    <div class="tx-faces" aria-hidden="true">
+                        <span class="tx-face f1">S</span>
+                        <span class="tx-face f2">A</span>
+                        <span class="tx-face f3">K</span>
+                        <span class="tx-face f4">M</span>
+                        <span class="tx-face tx-face-more">+</span>
+                    </div>
+                    <div class="tx-social-text">
+                        <strong>Скины, сборки и друзья</strong>
+                        <span>всё в одном лаунчере</span>
+                    </div>
+                </div>
+
+                <div class="server-status mc-card server-status-bar tx-server" id="serverStatusCard">
+                    <div class="server-status-left">
+                        <div class="status-indicator checking"></div>
+                        <div class="status-info">
+                            <span class="status-title" id="serverSocket">play.twistx.net</span>
+                            <span class="status-players">Проверка статуса...</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-copy-ip" onclick="app.copyIP(app.serverIp || 'play.twistx.net')" title="Копировать IP">
+                        <span class="material-icons-outlined">content_copy</span>
+                        <span class="btn-copy-ip-label">IP</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tx-hero-right">
+                <div class="hero-card hero-card-glass tx-skin-card">
+                    <div class="hero-card-top">
+                        <span class="hero-card-title">Твой персонаж</span>
+                        <span class="hero-card-sub">живой 3D-превью</span>
+                    </div>
+                    <div class="hero-skin-stage tx-skin-stage">
+                        <div class="tx-skin-placeholder" id="txSkinPlaceholder">Загружаем скин…</div>
+                        <div class="hero-skin-stage-glow"></div>
+                        <div class="hero-skin-stage-floor"></div>
+                        <canvas id="heroSkinCanvas" class="hero-skin"></canvas>
+                        <div class="hero-skin-stage-vignette"></div>
+                    </div>
+                    <div class="hero-card-bottom">
+                        <button type="button" class="tx-btn-card" onclick="app.navigate(app.user ? 'profile' : 'auth')">
+                            <span class="material-icons-outlined">person</span>
+                            Кабинет
+                        </button>
+                        <button type="button" class="tx-btn-card ghost" onclick="app.toggleHeroSkinAnim()">
+                            <span class="material-icons-outlined">directions_walk</span>
+                            Анимация
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================ Функции ============================ -->
+    <section class="tx-features" id="features">
+        <div class="tx-wrap tx-features-grid">
+            <article class="tx-feature">
+                <span class="tx-feature-ico"><span class="material-icons-outlined">rocket_launch</span></span>
+                <h3>Быстрый запуск</h3>
+                <p>Запускай Minecraft в один клик — без ручных настроек Java.</p>
+            </article>
+            <article class="tx-feature">
+                <span class="tx-feature-ico"><span class="material-icons-outlined">groups</span></span>
+                <h3>Друзья и общение</h3>
+                <p>Добавляй игроков по нику и собирай команду прямо на сайте.</p>
+            </article>
+            <article class="tx-feature">
+                <span class="tx-feature-ico"><span class="material-icons-outlined">diamond</span></span>
+                <h3>Косметика</h3>
+                <p>Плащи, эмоции и питомцы — выбирай в магазине лаунчера.</p>
+            </article>
+            <article class="tx-feature">
+                <span class="tx-feature-ico"><span class="material-icons-outlined">dns</span></span>
+                <h3>Серверы</h3>
+                <p>Один адрес, автоконнект и живой статус онлайна.</p>
+            </article>
+            <article class="tx-feature">
+                <span class="tx-feature-ico"><span class="material-icons-outlined">view_in_ar</span></span>
+                <h3>3D-скины</h3>
+                <p>Загружай скин и смотри его в объёмном превью.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- ============================ Показ лаунчера ============================ -->
+    <section class="tx-showcase">
+        <div class="tx-wrap tx-showcase-inner">
+            <div class="tx-mock" aria-hidden="true">
+                <div class="tx-mock-window">
+                    <div class="tx-mock-side">
+                        <div class="tx-mock-logo">
+                            <svg viewBox="0 0 48 48" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 4h13.4l5 9.2 5-9.2H42L31.6 24 42 44H29.5l-5.1-9.6L19.2 44H6l10.6-20L6 4z" fill="#E9D5FF"/>
+                            </svg>
+                            <span>TwistX</span>
+                        </div>
+                        <div class="tx-mock-nav active"><i>⌂</i>Главная</div>
+                        <div class="tx-mock-nav"><i>◍</i>Друзья</div>
+                        <div class="tx-mock-nav"><i>▤</i>Серверы</div>
+                        <div class="tx-mock-nav short"><i>✦</i>Магазин</div>
+                        <div class="tx-mock-premium">Премиум доступ</div>
+                    </div>
+                    <div class="tx-mock-main">
+                        <div class="tx-mock-top">Поиск по серверам…</div>
+                        <div class="tx-mock-hero">
+                            <div class="tx-mock-hero-title">Добро пожаловать<br>в TwistX!</div>
+                            <div class="tx-mock-hero-sub">Играй. Общайся. Наслаждайся.</div>
+                            <div class="tx-mock-hero-btn">▶ Играть</div>
+                        </div>
+                        <div class="tx-mock-cards">
+                            <div class="tx-mock-card"><b>Ваши серверы</b><span>TwistX Network</span></div>
+                            <div class="tx-mock-card"><b>Новости</b><span>Обновление 2.1</span></div>
+                            <div class="tx-mock-card accent"><b>Discord</b><span>Присоединяйся</span></div>
+                        </div>
+                    </div>
+                    <div class="tx-mock-friends">
+                        <div class="tx-mock-friends-title">Друзья · 4</div>
+                        <div class="tx-mock-friend"><i>V</i>vladikq</div>
+                        <div class="tx-mock-friend"><i>K</i>koshka</div>
+                        <div class="tx-mock-friend"><i>F</i>frostyy</div>
+                        <div class="tx-mock-friend"><i>D</i>d1mka</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tx-showcase-text">
+                <span class="tx-pill tx-pill-soft">Всё в одном месте</span>
+                <h2>Твоя игровая платформа</h2>
+                <p>
+                    Лаунчер, кабинет и сервер работают как одна система: версия, сборка,
+                    аккаунт и косметика всегда под рукой.
+                </p>
+
+                <div class="tx-stats">
+                    <div class="tx-stat">
+                        <span class="material-icons-outlined">bolt</span>
+                        <div>
+                            <strong>1 клик</strong>
+                            <span>до запуска игры</span>
+                        </div>
+                    </div>
+                    <div class="tx-stat">
+                        <span class="material-icons-outlined">shield</span>
+                        <div>
+                            <strong>TwistX ID</strong>
+                            <span>один вход на сайте и в лаунчере</span>
+                        </div>
+                    </div>
+                    <div class="tx-stat">
+                        <span class="material-icons-outlined">public</span>
+                        <div>
+                            <strong>24/7</strong>
+                            <span>хаб и кабинет</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tx-showcase-actions">
+                    <button type="button" class="tx-btn-primary" onclick="app.navigate('download')">
+                        Скачать сейчас
+                        <span class="material-icons-outlined">download</span>
+                    </button>
+                    <a class="tx-btn-ghost" href="./friends.html">Открыть друзей</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="tx-footer">
+    <div class="tx-wrap tx-footer-inner">
+        <div class="tx-footer-brand">
+            <strong>TwistX</strong>
+            <span>лаунчер, сайт и сервер Minecraft</span>
+        </div>
+        <div class="tx-footer-links">
+            <a href="./download.html">Загрузка</a>
+            <a href="./skins.html">Скины</a>
+            <a href="./friends.html">Друзья</a>
+            <a href="./rules.html">Правила</a>
+            <a href="./auth.html">Вход</a>
+        </div>
+        <div class="tx-footer-note">Не связан с Mojang AB и Microsoft.</div>
+    </div>
+</footer>
+
+<div id="toastPool" class="toast-pool"></div>
+
+<script>
+    // Мелкие доработки лендинга: заглушка скина и аватар в шапке.
+    document.addEventListener("DOMContentLoaded", () => {
+        const placeholder = document.getElementById("txSkinPlaceholder");
+        const avatar = document.getElementById("navAvatarImg");
+        const app = window.app;
+
+        if (avatar && app && app.user) {
+            avatar.classList.add("is-ready");
+        }
+
+        const hidePlaceholder = () => {
+            if (placeholder) placeholder.classList.add("is-hidden");
+        };
+
+        // Как только 3D-вьюер готов — убираем подпись; страхуемся таймером.
+        let tries = 0;
+        const timer = setInterval(() => {
+            tries += 1;
+            if ((app && (app.heroSkin || app.skinViewer)) || tries > 24) {
+                clearInterval(timer);
+                hidePlaceholder();
+            }
+        }, 400);
+    });
+</script>
+<script src="./js/boot.js"></script>
+<script src="./js/auth-ui.js"></script>
+<script type="module" src="./js/main.js"></script>
+<script src="./js/admin-button.js" defer></script>
+</body>
+</html>

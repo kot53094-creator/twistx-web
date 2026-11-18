@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07051a">
+    <title>Правила — TwistX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Press+Start+2P&display=swap">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+</head>
+<body data-twistx-page="rules" class="page-sub">
+    <a class="skip-link" href="#appContent">Перейти к содержимому</a>
+    <nav class="navbar navbar-stream">
+        <div class="nav-container nav-stream-grid">
+            <a href="./index.html" class="nav-brand">
+                <div class="brand-mark">
+                    <img src="https://minotar.net/helm/Steve/32.png" alt="TwistX" class="brand-icon">
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">TwistX</span>
+                    <span class="brand-subtitle">launcher / server hub</span>
+                </div>
+            </a>
+            <ul class="nav-links-center">
+                <li><a href="#">Форум</a></li>
+                <li><a href="./index.html#servers">Наши сервера</a></li>
+                <li><a href="./download.html" class="nav-link-shop">Магазин</a></li>
+                <li><a href="./rules.html">Помощь</a></li>
+                <li><a href="#" class="nav-link-donate">Донат <span class="donate-ico" aria-hidden="true">✦</span></a></li>
+            </ul>
+            <div class="nav-auth-stream">
+                <div class="nav-avatar-wrap" aria-hidden="true">
+                    <img class="nav-avatar-img" id="navAvatarImg" src="https://minotar.net/helm/Steve/36.png" width="36" height="36" alt="">
+                </div>
+                <div class="nav-auth" id="navAuth"></div>
+            </div>
+        </div>
+    </nav>
+
+    <main id="appContent" style="margin-top:60px;">
+        <div class="sub-hero">
+            <div class="sub-hero-inner">
+                <h1>Правила сервера <span class="highlight">TwistX</span></h1>
+                <p>Ознакомься перед игрой.</p>
+            </div>
+        </div>
+        <section class="container rules-content" style="padding-top:32px;padding-bottom:48px;">
+            <div class="rule-box">
+                <h3>1. Общие положения</h3>
+                <ul>
+                    <li>1.1. Незнание правил не освобождает от ответственности.</li>
+                    <li>1.2. Администрация оставляет за собой право изменять правила без предупреждения.</li>
+                    <li>1.3. Деньги, потраченные на донат, возврату не подлежат.</li>
+                </ul>
+            </div>
+            <div class="rule-box">
+                <h3>2. Игровой процесс</h3>
+                <ul>
+                    <li>2.1. Запрещено использование стороннего ПО (читов), дающего преимущество.</li>
+                    <li>2.2. Запрещено использование багов сервера/игры. При нахождении бага сообщи администрации.</li>
+                    <li>2.3. Гриферство — только в отведённых зонах, если они есть.</li>
+                </ul>
+            </div>
+            <div class="rule-box">
+                <h3>3. Общение</h3>
+                <ul>
+                    <li>3.1. Запрещены оскорбления родственников, наций и религий.</li>
+                    <li>3.2. Запрещены флуд, капс, спам и реклама сторонних проектов.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand"><h3>TwistX</h3><p>Launcher &amp; Server Hub.</p></div>
+            <div class="footer-links">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="./index.html">Главная</a></li>
+                    <li><a href="./download.html">Скачать</a></li>
+                    <li><a href="./skins.html">Скины</a></li>
+                    <li><a href="./rules.html">Правила</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 TwistX</p></div>
+    </footer>
+    <div id="toastPool" class="toast-pool"></div>
+    <script src="./js/boot.js"></script>
+    <script src="./js/auth-ui.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script src="./js/admin-button.js" defer></script>
+</body>
+</html>
